@@ -1,0 +1,70 @@
+[gd_scene format=3 uid="uid://d2o6sl5b8jukw"]
+
+[ext_resource type="Script" uid="uid://dds7xl3h3ij32" path="res://scenes/main_menu/main_menu.gd" id="1_fsom3"]
+
+[node name="MainMenu" type="Control" unique_id=718176578]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_fsom3")
+
+[node name="MenuVbox" type="VBoxContainer" parent="." unique_id=1154193520]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="TitleContainer" type="CenterContainer" parent="MenuVbox" unique_id=1144160657]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="TitleVbox" type="VBoxContainer" parent="MenuVbox/TitleContainer" unique_id=1840774762]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="MenuVbox/TitleContainer/TitleVbox" unique_id=727847158]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 75
+text = "Asteroids"
+horizontal_alignment = 1
+
+[node name="SubTitle" type="Label" parent="MenuVbox/TitleContainer/TitleVbox" unique_id=1580312217]
+layout_mode = 2
+text = "By Josie"
+horizontal_alignment = 1
+
+[node name="ButtonsContainer" type="CenterContainer" parent="MenuVbox" unique_id=16877731]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.0
+
+[node name="ButtonsVbox" type="VBoxContainer" parent="MenuVbox/ButtonsContainer" unique_id=981694391]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Play" type="Button" parent="MenuVbox/ButtonsContainer/ButtonsVbox" unique_id=1734579650]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Play"
+
+[node name="Options" type="Button" parent="MenuVbox/ButtonsContainer/ButtonsVbox" unique_id=1283748389]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Options"
+
+[node name="Exit" type="Button" parent="MenuVbox/ButtonsContainer/ButtonsVbox" unique_id=732597808]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Exit"
+
+[connection signal="pressed" from="MenuVbox/ButtonsContainer/ButtonsVbox/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="MenuVbox/ButtonsContainer/ButtonsVbox/Options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="MenuVbox/ButtonsContainer/ButtonsVbox/Exit" to="." method="_on_exit_pressed"]

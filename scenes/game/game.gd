@@ -7,6 +7,10 @@ var asteroid_max = 10
 
 @onready var ship = %Ship 
 
+# for managing pause menu
+var pause_menu_scene = preload("res://scenes/pause_menu/pause_menu.tscn")
+var pause_instance = null
+
 
 # spawn a new asteroid
 func spawn_asteroid():
@@ -34,3 +38,29 @@ func _on_asteroid_timer_timeout() -> void:
 # when asteroid is destroyed
 func _on_asteroid_destroyed():
 	asteroid_count -= 1 # remove 1 from asteroid count
+
+
+# input for pause menu
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("pause"): # if pausing
+		if pause_instance:
+			unpause()
+		else:
+			pause()
+
+
+
+func pause():
+	pause_instance = pause_menu_scene.instantiate() # load pause scene 
+	pause_instance.global_position = get_viewport_rect().size / 2 # put in center
+	$".".add_child(pause_instance) # add to tree
+	pause_instance.connect("unpause",unpause) # connect to the signal for unpausing
+	
+	get_tree().paused = true # pause the game
+
+
+func unpause():
+	if pause_instance: # if pause menu exists
+		pause_instance.queue_free() # free it
+		pause_instance = null # reset
+		get_tree().paused = false # unpause game (should already be unpaused but just incase)
