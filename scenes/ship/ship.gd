@@ -1,6 +1,7 @@
-extends Node2D
+extends ScreenWrap # extends node2d aswell
 
-@onready var ship = $ShipBody # ship body object
+
+@onready var ship = $"." # ship object
 
 var velocity := Vector2(0,0) # current velocity for moving
 var thrust := 5 # speed
@@ -13,7 +14,7 @@ var screen_wrap_offset :=  40 # how much the ship can go offscreen before being 
 func _physics_process(delta: float) -> void:
 	handle_turning(delta)
 	handle_thrust(delta)
-	screen_wrap()
+	screen_wrap(get_viewport().get_visible_rect(),screen_wrap_offset) # wrap around screen edges
 	if Input.is_action_just_pressed("shoot"):
 		shoot()
 
@@ -44,19 +45,4 @@ func shoot():
 	var new_bullet = BULLET.instantiate()
 	new_bullet.global_position = ship.global_position
 	new_bullet.global_rotation = ship.global_rotation
-	$".".add_child(new_bullet)
-
-
-# wrap the ship around the edges of the screen
-func screen_wrap():
-	# horizontal
-	if ship.global_position.x > get_viewport().size.x + screen_wrap_offset:
-		ship.global_position.x = -screen_wrap_offset
-	elif ship.global_position.x < -screen_wrap_offset:
-		ship.global_position.x = get_viewport().size.x + screen_wrap_offset
-	
-	# vertical
-	if ship.global_position.y > get_viewport().size.y + screen_wrap_offset:
-		ship.global_position.y = -screen_wrap_offset
-	elif ship.global_position.y < -screen_wrap_offset:
-		ship.global_position.y = get_viewport().size.y + screen_wrap_offset
+	get_tree().get_root().add_child(new_bullet) # add bullet to game root node

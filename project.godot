@@ -55,6 +55,11 @@ accelerate={
 ]
 }
 
+[layer_names]
+
+2d_physics/layer_1="asteroid"
+2d_physics/layer_2="bullet"
+
 [physics]
 
 3d/physics_engine="Jolt Physics"

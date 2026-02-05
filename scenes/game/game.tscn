@@ -3,15 +3,29 @@
 [ext_resource type="Script" uid="uid://ca5lf4shymy6s" path="res://scenes/game/game.gd" id="1_7h61r"]
 [ext_resource type="PackedScene" uid="uid://d15np85n6uiks" path="res://scenes/ship/ship.tscn" id="2_0sr1o"]
 
+[sub_resource type="Curve2D" id="Curve2D_7h61r"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -81, -67, 0, 0, 0, 0, 1356, -66, 0, 0, 0, 0, 1355, 780, 0, 0, 0, 0, -84, 780, 0, 0, 0, 0, -82, -66)
+}
+point_count = 5
+
 [node name="Game" type="Node2D" unique_id=1204348374]
 script = ExtResource("1_7h61r")
 
 [node name="Ship" parent="." unique_id=781739875 instance=ExtResource("2_0sr1o")]
+unique_name_in_owner = true
 position = Vector2(640, 360)
 
 [node name="AsteroidTimer" type="Timer" parent="." unique_id=456311469]
 unique_name_in_owner = true
 wait_time = 5.0
 autostart = true
+
+[node name="AsteroidSpawnPath" type="Path2D" parent="." unique_id=121683794]
+curve = SubResource("Curve2D_7h61r")
+
+[node name="SpawnPathFollow" type="PathFollow2D" parent="AsteroidSpawnPath" unique_id=1709379690]
+position = Vector2(-81, -67)
+rotation = 0.0006958941
 
 [connection signal="timeout" from="AsteroidTimer" to="." method="_on_asteroid_timer_timeout"]

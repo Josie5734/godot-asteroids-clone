@@ -1,33 +1,29 @@
 extends Node2D
 
-# needs to ranomly spawn asteroids
 
 @onready var asteroid_timer = %AsteroidTimer
 var asteroid_count = 0
 var asteroid_max = 10
 
-
-func _input(event: InputEvent) -> void:
-	if event is InputEventMouseButton:
-		print(event.position)
+@onready var ship = %Ship 
 
 
 func spawn_asteroid():
 	const ASTEROID  = preload("res://scenes/asteroid/asteroid.tscn")
 	
 	var new_asteroid = ASTEROID.instantiate()
-	new_asteroid.global_position = Vector2(randi_range(0,1280),randi_range(0,720)) # random position
-	new_asteroid.global_rotation = get_angle_to($Ship.global_position) # point towards ship
-	$".".add_child(new_asteroid) # add to scene
-	
-	print("spawning at ", new_asteroid.global_position)
-	print(get_viewport_rect())
+	$AsteroidSpawnPath/SpawnPathFollow.progress_ratio = randf() # random point on the spawn path
+	new_asteroid.global_position = $AsteroidSpawnPath/SpawnPathFollow.global_position # set position to random point on spawn path
+	new_asteroid.speed = randi_range(20,40) # random speed
+	# movement direction is set as towards the ship at the time of spawning
+	new_asteroid.velocity =  Vector2(ship.global_position - new_asteroid.global_position).normalized() 
+	get_tree().get_root().add_child(new_asteroid) # add to scene from root
 	
 	asteroid_count += 1 # iterate counter
 
 
 func _on_asteroid_timer_timeout() -> void:
-	if asteroid_count < asteroid_max:
-		spawn_asteroid()
+	if asteroid_count < asteroid_max: # if not at limit
+		spawn_asteroid() # create new asteroid
 	%AsteroidTimer.wait_time = 3 # reset timer
 	

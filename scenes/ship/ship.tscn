@@ -2,16 +2,15 @@
 
 [ext_resource type="Script" uid="uid://74jfeg6h4qt3" path="res://scenes/ship/ship.gd" id="1_ccv4y"]
 
-[node name="Ship" type="Node2D" unique_id=781739875]
+[node name="ShipBody" type="StaticBody2D" unique_id=1852687556]
 script = ExtResource("1_ccv4y")
 
-[node name="ShipBody" type="StaticBody2D" parent="." unique_id=1852687556]
-
-[node name="ShipPolygon" type="Polygon2D" parent="ShipBody" unique_id=1549768632]
+[node name="ShipPolygon" type="Polygon2D" parent="." unique_id=1549768632]
 scale = Vector2(0.5, 0.5)
+color = Color(0.23529412, 0.8980392, 0.23529412, 1)
 polygon = PackedVector2Array(72.000015, 32, 72.000015, -32.000004, -56.00003, 0)
 uv = PackedVector2Array(159.99998, 32, 159.99998, -47.999996, 0, -8)
 
-[node name="ShipCollision" type="CollisionPolygon2D" parent="ShipBody" unique_id=163262529]
+[node name="ShipCollision" type="CollisionPolygon2D" parent="." unique_id=163262529]
 scale = Vector2(0.5, 0.5)
 polygon = PackedVector2Array(72, -32, -54, 0, 72, 32)
