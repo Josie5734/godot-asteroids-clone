@@ -14,6 +14,8 @@ func _physics_process(delta: float) -> void:
 	handle_turning(delta)
 	handle_thrust(delta)
 	screen_wrap()
+	if Input.is_action_just_pressed("shoot"):
+		shoot()
 
 
 # input for rotating 
@@ -33,6 +35,16 @@ func handle_thrust(delta):
 	else: # drag if not moving
 		velocity -= velocity.lerp(Vector2(0,0),drag) * delta
 	ship.global_position += velocity
+
+
+# shoot bullet
+func shoot():
+	const BULLET = preload("res://scenes/bullet/bullet.tscn")
+	
+	var new_bullet = BULLET.instantiate()
+	new_bullet.global_position = ship.global_position
+	new_bullet.global_rotation = ship.global_rotation
+	$".".add_child(new_bullet)
 
 
 # wrap the ship around the edges of the screen

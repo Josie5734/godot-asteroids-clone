@@ -6,13 +6,12 @@
 script = ExtResource("1_ccv4y")
 
 [node name="ShipBody" type="StaticBody2D" parent="." unique_id=1852687556]
-position = Vector2(640, 360)
 
 [node name="ShipPolygon" type="Polygon2D" parent="ShipBody" unique_id=1549768632]
 scale = Vector2(0.5, 0.5)
-polygon = PackedVector2Array(72.00003, 40, 72, -40, -120, 0)
+polygon = PackedVector2Array(72.000015, 32, 72.000015, -32.000004, -56.00003, 0)
 uv = PackedVector2Array(159.99998, 32, 159.99998, -47.999996, 0, -8)
 
 [node name="ShipCollision" type="CollisionPolygon2D" parent="ShipBody" unique_id=163262529]
 scale = Vector2(0.5, 0.5)
-polygon = PackedVector2Array(72, -40, -118, 0, 72, 40)
+polygon = PackedVector2Array(72, -32, -54, 0, 72, 32)

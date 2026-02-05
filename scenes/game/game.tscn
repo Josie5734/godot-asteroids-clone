@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://btl0otxtx6dxq"]
+
+[ext_resource type="Script" uid="uid://ca5lf4shymy6s" path="res://scenes/game/game.gd" id="1_7h61r"]
+[ext_resource type="PackedScene" uid="uid://d15np85n6uiks" path="res://scenes/ship/ship.tscn" id="2_0sr1o"]
+
+[node name="Game" type="Node2D" unique_id=1204348374]
+script = ExtResource("1_7h61r")
+
+[node name="Ship" parent="." unique_id=781739875 instance=ExtResource("2_0sr1o")]
+position = Vector2(640, 360)
+
+[node name="AsteroidTimer" type="Timer" parent="." unique_id=456311469]
+unique_name_in_owner = true
+wait_time = 5.0
+autostart = true
+
+[connection signal="timeout" from="AsteroidTimer" to="." method="_on_asteroid_timer_timeout"]
