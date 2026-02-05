@@ -8,6 +8,7 @@ var asteroid_max = 10
 @onready var ship = %Ship 
 
 
+# spawn a new asteroid
 func spawn_asteroid():
 	const ASTEROID  = preload("res://scenes/asteroid/asteroid.tscn")
 	
@@ -20,6 +21,8 @@ func spawn_asteroid():
 	get_tree().get_root().add_child(new_asteroid) # add to scene from root
 	
 	asteroid_count += 1 # iterate counter
+	
+	new_asteroid.connect("destroyed",_on_asteroid_destroyed) # connect to the asteroid destroyed signal
 
 
 func _on_asteroid_timer_timeout() -> void:
@@ -27,3 +30,7 @@ func _on_asteroid_timer_timeout() -> void:
 		spawn_asteroid() # create new asteroid
 	%AsteroidTimer.wait_time = 3 # reset timer
 	
+
+# when asteroid is destroyed
+func _on_asteroid_destroyed():
+	asteroid_count -= 1 # remove 1 from asteroid count

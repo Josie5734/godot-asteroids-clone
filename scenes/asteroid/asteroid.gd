@@ -1,8 +1,10 @@
 extends ScreenWrap
 
+signal destroyed
+
 @onready var asteroid = $"." # main body
 @onready var asteroid_polygon = $AsteroidPolygon # shape
-@onready var asteroid_collision = $AsteroidArea/AsteroidCollisionPolygon # collision shape
+@onready var asteroid_collision = $AsteroidCollisionPolygon # collision shape
 
 @export var speed = int()
 @export var velocity = Vector2()
@@ -49,3 +51,11 @@ func generate_points():
 		if r > furthest_point: screen_wrap_margin = r + (min_radius/2) # set furthest point from center as screenwrap margin
 
 	return polygon_points # send back the points array 
+
+
+# destroy the asteroid
+func destroy():
+	queue_free() # remove object
+	destroyed.emit()
+	# right now just instantly deletes
+	# will be expanded with splitting and particles and sound and stuff

@@ -23,6 +23,12 @@ window/size/viewport_height=720
 
 enabled=PackedStringArray("res://addons/ridiculous_coding/plugin.cfg")
 
+[global_group]
+
+asteroids="asteroid objects"
+bullets="bullet objects"
+ship="the ship"
+
 [input]
 
 turn_right={
@@ -59,6 +65,7 @@ accelerate={
 
 2d_physics/layer_1="asteroid"
 2d_physics/layer_2="bullet"
+2d_physics/layer_3="ship"
 
 [physics]
 

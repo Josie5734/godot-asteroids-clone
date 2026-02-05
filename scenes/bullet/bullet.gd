@@ -15,5 +15,8 @@ func _physics_process(delta: float) -> void:
 		queue_free()
 
 
-
-# needs signal for colliding with asteroid here
+# when bullet enters an Area2D
+func _on_area_entered(area: Area2D) -> void:
+	if area.is_in_group("asteroids"): # if area has method destroy
+		queue_free() # delete bullet
+		area.destroy() # call destroy method

@@ -2,7 +2,8 @@
 
 [ext_resource type="Script" uid="uid://74jfeg6h4qt3" path="res://scenes/ship/ship.gd" id="1_ccv4y"]
 
-[node name="ShipBody" type="StaticBody2D" unique_id=1852687556]
+[node name="ShipBody" type="Area2D" unique_id=370561297 groups=["ship"]]
+collision_layer = 4
 script = ExtResource("1_ccv4y")
 
 [node name="ShipPolygon" type="Polygon2D" parent="." unique_id=1549768632]
@@ -14,3 +15,5 @@ uv = PackedVector2Array(159.99998, 32, 159.99998, -47.999996, 0, -8)
 [node name="ShipCollision" type="CollisionPolygon2D" parent="." unique_id=163262529]
 scale = Vector2(0.5, 0.5)
 polygon = PackedVector2Array(72, -32, -54, 0, 72, 32)
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

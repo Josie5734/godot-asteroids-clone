@@ -46,3 +46,18 @@ func shoot():
 	new_bullet.global_position = ship.global_position
 	new_bullet.global_rotation = ship.global_rotation
 	get_tree().get_root().add_child(new_bullet) # add bullet to game root node
+
+
+# kill the ship 
+func die():
+	# logic for what happens on game over goes here
+	ship.visible = false # just change to invisible for now
+	
+	
+# on collision
+func _on_area_entered(area: Area2D) -> void:
+	if area.is_in_group("asteroids"): # if object is asteroid
+		die() # kill ship
+		
+
+	

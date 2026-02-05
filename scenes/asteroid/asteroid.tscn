@@ -2,12 +2,11 @@
 
 [ext_resource type="Script" uid="uid://dcalleoynxhj7" path="res://scenes/asteroid/asteroid.gd" id="1_phgi8"]
 
-[node name="Asteroid" type="Node2D" unique_id=1027905192]
+[node name="Asteroid" type="Area2D" unique_id=1174616118 groups=["asteroids"]]
+collision_mask = 6
 script = ExtResource("1_phgi8")
 
 [node name="AsteroidPolygon" type="Polygon2D" parent="." unique_id=221592216]
 
-[node name="AsteroidArea" type="Area2D" parent="." unique_id=59880194]
-
-[node name="AsteroidCollisionPolygon" type="CollisionPolygon2D" parent="AsteroidArea" unique_id=507126233]
+[node name="AsteroidCollisionPolygon" type="CollisionPolygon2D" parent="." unique_id=507126233]
 polygon = PackedVector2Array(3, -5, 6, 7, -8, 0)
