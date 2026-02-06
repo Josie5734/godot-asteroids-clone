@@ -1,5 +1,6 @@
 extends ScreenWrap # extends node2d aswell
 
+signal ship_died # when ship dies
 
 @onready var ship = $"." # ship object
 
@@ -7,7 +8,7 @@ var velocity := Vector2(0,0) # current velocity for moving
 var thrust := 5 # speed
 var max_speed := 30 # speed cap
 var drag := .08 # higher = less drag
-var turn_speed := 2 # turning speed
+var turn_speed := 3 # turning speed
 var screen_wrap_offset :=  40 # how much the ship can go offscreen before being wrapped
 
 
@@ -45,13 +46,12 @@ func shoot():
 	var new_bullet = BULLET.instantiate()
 	new_bullet.global_position = ship.global_position
 	new_bullet.global_rotation = ship.global_rotation
-	get_tree().get_root().add_child(new_bullet) # add bullet to game root node
+	get_tree().get_root().get_node("Game").add_child(new_bullet) # add bullet as child of game node
 
 
 # kill the ship 
 func die():
-	# logic for what happens on game over goes here
-	ship.visible = false # just change to invisible for now
+	ship_died.emit() # send signal to game scene
 	
 	
 # on collision
