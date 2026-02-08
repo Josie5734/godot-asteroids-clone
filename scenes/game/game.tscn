@@ -18,7 +18,7 @@ position = Vector2(640, 360)
 
 [node name="AsteroidTimer" type="Timer" parent="." unique_id=456311469]
 unique_name_in_owner = true
-wait_time = 5.0
+wait_time = 0.495
 autostart = true
 
 [node name="AsteroidSpawnPath" type="Path2D" parent="." unique_id=121683794]
@@ -27,5 +27,30 @@ curve = SubResource("Curve2D_7h61r")
 [node name="SpawnPathFollow" type="PathFollow2D" parent="AsteroidSpawnPath" unique_id=1709379690]
 position = Vector2(-81, -67)
 rotation = 0.0006958941
+
+[node name="UI" type="Control" parent="." unique_id=1456760570]
+layout_mode = 3
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="UI" unique_id=1004074063]
+layout_mode = 0
+offset_left = 1.0
+offset_top = -1.0
+offset_right = 1281.0
+offset_bottom = 60.5
+
+[node name="ScoreLabel" type="Label" parent="UI/CenterContainer" unique_id=663541369]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 36
+text = "Score: 0"
+horizontal_alignment = 1
 
 [connection signal="timeout" from="AsteroidTimer" to="." method="_on_asteroid_timer_timeout"]

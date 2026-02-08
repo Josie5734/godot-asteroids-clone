@@ -9,6 +9,11 @@ signal destroyed
 @export var speed = int()
 @export var velocity = Vector2()
 
+var size = 3 # the size of the asteroid
+# 3 - big
+# 2 - medium
+# 1 - small
+
 var rotate_speed = randf_range(-0.3,0.3) # how fast to rotate
 
 var screen_wrap_margin: int # used to set how much space is given for screen wrapping
@@ -56,6 +61,6 @@ func generate_points():
 # destroy the asteroid
 func destroy():
 	queue_free() # remove object
-	destroyed.emit()
+	destroyed.emit(size) # emit signal with the size of the asteroid
 	# right now just instantly deletes
 	# will be expanded with splitting and particles and sound and stuff

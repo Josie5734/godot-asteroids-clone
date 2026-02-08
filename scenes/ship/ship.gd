@@ -8,7 +8,7 @@ var velocity := Vector2(0,0) # current velocity for moving
 var thrust := 5 # speed
 var max_speed := 30 # speed cap
 var drag := .08 # higher = less drag
-var turn_speed := 3 # turning speed
+var turn_speed := 2 # turning speed
 var screen_wrap_offset :=  40 # how much the ship can go offscreen before being wrapped
 
 

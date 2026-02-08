@@ -1,0 +1,53 @@
+[gd_scene format=3 uid="uid://dvasit1v2ktg5"]
+
+[ext_resource type="Script" uid="uid://btk2668ibe1as" path="res://scenes/game_over_menu/game_over_menu.gd" id="1_7rk3r"]
+
+[node name="GameOver_Menu" type="Control" unique_id=1924056902]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_7rk3r")
+
+[node name="MenuVBox" type="VBoxContainer" parent="." unique_id=877391710]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GameOverLabel" type="Label" parent="MenuVBox" unique_id=1942206461]
+layout_mode = 2
+theme_override_font_sizes/font_size = 130
+text = "Game Over"
+horizontal_alignment = 1
+
+[node name="ButtonCenterContainer" type="CenterContainer" parent="MenuVBox" unique_id=1810144031]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ButtonContainer" type="VBoxContainer" parent="MenuVBox/ButtonCenterContainer" unique_id=1468830630]
+layout_mode = 2
+theme_override_constants/separation = 30
+alignment = 1
+
+[node name="Restart" type="Button" parent="MenuVBox/ButtonCenterContainer/ButtonContainer" unique_id=777075323]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 60
+text = "Restart"
+
+[node name="Exit" type="Button" parent="MenuVBox/ButtonCenterContainer/ButtonContainer" unique_id=1814786156]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 60
+text = "Exit To Menu"
+
+[connection signal="pressed" from="MenuVBox/ButtonCenterContainer/ButtonContainer/Restart" to="." method="_on_restart_pressed"]
+[connection signal="pressed" from="MenuVBox/ButtonCenterContainer/ButtonContainer/Exit" to="." method="_on_exit_pressed"]
