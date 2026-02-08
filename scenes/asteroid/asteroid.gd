@@ -24,7 +24,7 @@ func _ready() -> void:
 	 # generate and set points for shape and collision shape
 	var polygon_points = generate_points()
 	asteroid_polygon.polygon = polygon_points
-	asteroid_collision.polygon = polygon_points
+	asteroid_collision.set_deferred("polygon",polygon_points) 
 	
 
 func _physics_process(delta: float) -> void:
@@ -41,7 +41,6 @@ func _physics_process(delta: float) -> void:
 func generate_points():
 	var polygon_points = PackedVector2Array()
 	var point_count = 8 # number of points
-	var center = asteroid.global_position # center point
 	var min_radius = 40
 	var angle = 360 / point_count # angle of each point in degrees
 	var start_angle = 0
@@ -61,6 +60,6 @@ func generate_points():
 # destroy the asteroid
 func destroy():
 	queue_free() # remove object
-	destroyed.emit(size) # emit signal with the size of the asteroid
+	destroyed.emit(size,asteroid.global_position) # emit signal with the size and pos of the asteroid
 	# right now just instantly deletes
 	# will be expanded with splitting and particles and sound and stuff

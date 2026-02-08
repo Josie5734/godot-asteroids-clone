@@ -35,7 +35,7 @@ func _ready() -> void:
 	ship.connect("ship_died",ship_died) # connect to the ships death signal
 
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if score_bank > 0: # gradually increase the score value if there is score to add
 		gradual_score() 
 
@@ -46,19 +46,26 @@ func ship_died():
 	game_over() # load game over sequence
 
 
-# spawn a new asteroid
-func spawn_asteroid(size):
+# spawn a new asteroid, pass in size to say which size, option pos for spawning splits from previous asteroid
+func spawn_asteroid(size, pos = Vector2()):
 	const ASTEROID  = preload("res://scenes/asteroid/asteroid.tscn")
 	
 	var new_asteroid = ASTEROID.instantiate()
 	$AsteroidSpawnPath/SpawnPathFollow.progress_ratio = randf() # random point on the spawn path
-	new_asteroid.global_position = $AsteroidSpawnPath/SpawnPathFollow.global_position # set position to random point on spawn path
-	new_asteroid.speed = randi_range(20,40) # random speed
-	# movement direction is set as towards the ship at the time of spawning
-	new_asteroid.velocity =  Vector2(ship.global_position - new_asteroid.global_position).normalized() 
+	if size == 3: # if a big one
+		new_asteroid.global_position = $AsteroidSpawnPath/SpawnPathFollow.global_position  # set position to random point on spawn path
+		new_asteroid.speed = randi_range(20,40) # random speed
+		# movement direction is set as towards the ship at the time of spawning
+		new_asteroid.velocity =  Vector2(ship.global_position - new_asteroid.global_position).normalized() 
+
+	else: # else smaller ones
+		new_asteroid.global_position = pos # spawn at passed in position
+		new_asteroid.speed = randi_range((20*(size/5)),(40*(size/5))) # random speed (higher than normal
+		new_asteroid.velocity =  Vector2(randf(),randf()) # random direction 
+
 	new_asteroid.scale = SIZES[size] # set the size of the asteroid
 	new_asteroid.size = size # set the size variable in the script
-	add_child(new_asteroid) # add asteroid as child of game scene
+	call_deferred("add_child",new_asteroid)  # add asteroid as child of game scene
 	
 	asteroid_count += 1 # iterate counter
 	
@@ -74,14 +81,14 @@ func _on_asteroid_timer_timeout() -> void:
 	
 
 # when asteroid is destroyed
-func _on_asteroid_destroyed(size):
+func _on_asteroid_destroyed(size,pos):
 	# logic for splitting asteroids
 	if size == 3:
-		spawn_asteroid(2) # spawn 2 asteroids of size 2
-		spawn_asteroid(2)
+		spawn_asteroid(2,pos) # spawn 2 asteroids of size 2
+		spawn_asteroid(2,pos)
 	elif size == 2:
-		spawn_asteroid(1) # spawn 2 asteroids of size 1
-		spawn_asteroid(1)
+		spawn_asteroid(1,pos) # spawn 2 asteroids of size 1
+		spawn_asteroid(1,pos)
 	elif size == 1:
 		asteroid_count -= 1 # remove 1 from asteroid count
 
