@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://3dq5vis2xs8a"]
+
+[ext_resource type="Texture2D" uid="uid://dn8c1dx0ddn56" path="res://scenes/background/bitmap.svg" id="1_iheb5"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_pesyb"]
+
+[sub_resource type="Curve" id="Curve_rsf5d"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.54444444, 0.28089893), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_ewwm8"]
+curve = SubResource("Curve_rsf5d")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_rx5nc"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(640, 360, 1)
+angle_min = -720.0
+angle_max = 720.0
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_ewwm8")
+
+[node name="Background" type="Node2D" unique_id=1586709641]
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=539268506]
+offset_right = 1280.0
+offset_bottom = 720.0
+color = Color(0.13049722, 0.13280815, 0.22825044, 1)
+
+[node name="Stars" type="GPUParticles2D" parent="." unique_id=1364066109]
+material = SubResource("CanvasItemMaterial_pesyb")
+position = Vector2(640, 360)
+amount = 16
+texture = ExtResource("1_iheb5")
+lifetime = 4.31
+preprocess = 3.89
+randomness = 0.43
+process_material = SubResource("ParticleProcessMaterial_rx5nc")

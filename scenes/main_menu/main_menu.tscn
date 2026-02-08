@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://d2o6sl5b8jukw"]
 
 [ext_resource type="Script" uid="uid://dds7xl3h3ij32" path="res://scenes/main_menu/main_menu.gd" id="1_fsom3"]
+[ext_resource type="PackedScene" uid="uid://3dq5vis2xs8a" path="res://scenes/background/background.tscn" id="2_0ebjn"]
 
 [node name="MainMenu" type="Control" unique_id=718176578]
 layout_mode = 3
@@ -10,6 +11,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_fsom3")
+
+[node name="Background" parent="." unique_id=1586709641 instance=ExtResource("2_0ebjn")]
 
 [node name="MenuVbox" type="VBoxContainer" parent="." unique_id=1154193520]
 layout_mode = 1

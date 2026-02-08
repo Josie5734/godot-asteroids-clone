@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://ca5lf4shymy6s" path="res://scenes/game/game.gd" id="1_7h61r"]
 [ext_resource type="PackedScene" uid="uid://d15np85n6uiks" path="res://scenes/ship/ship.tscn" id="2_0sr1o"]
+[ext_resource type="PackedScene" uid="uid://3dq5vis2xs8a" path="res://scenes/background/background.tscn" id="2_kelw5"]
 
 [sub_resource type="Curve2D" id="Curve2D_7h61r"]
 _data = {
@@ -11,6 +12,8 @@ point_count = 5
 
 [node name="Game" type="Node2D" unique_id=1204348374]
 script = ExtResource("1_7h61r")
+
+[node name="Background" parent="." unique_id=1586709641 instance=ExtResource("2_kelw5")]
 
 [node name="Ship" parent="." unique_id=781739875 instance=ExtResource("2_0sr1o")]
 unique_name_in_owner = true
