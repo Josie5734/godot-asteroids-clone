@@ -99,5 +99,6 @@ static func create(asteroid_pos: Vector2, ship_pos: Vector2, size) -> Node2D:
 func destroy():
 	queue_free() # remove object
 	destroyed.emit(size,asteroid.global_position) # emit signal with the size and pos of the asteroid
+	
 	# right now just instantly deletes
 	# will be expanded with particles and sound and stuff

@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://bv8kycc17uu1y"]
+
+[ext_resource type="Script" uid="uid://ds8argpff63ri" path="res://scenes/particles/destroy.gd" id="1_w5iag"]
+[ext_resource type="Texture2D" uid="uid://cvgnavarfrofk" path="res://scenes/particles/littlerock.png" id="1_wbtwu"]
+
+[sub_resource type="Curve" id="Curve_wbtwu"]
+_limits = [-1.0, 1.0, 0.0, 1.0]
+_data = [Vector2(0.02222222, -0.9775282), 0.0, 0.0, 0, 0, Vector2(0.51666665, -0.43820226), 0.0, 0.0, 0, 0, Vector2(1, -0.9101125), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_w5iag"]
+curve = SubResource("Curve_wbtwu")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_w5iag"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 31.42
+angle_min = -720.0
+angle_max = 720.0
+angle_curve = SubResource("CurveTexture_w5iag")
+spread = 180.0
+initial_velocity_min = 55.039997
+initial_velocity_max = 55.039997
+gravity = Vector3(0, 0, 0)
+scale_max = 2.0
+
+[node name="DestroyParticles" type="Node2D" unique_id=669700983]
+script = ExtResource("1_w5iag")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=90018235]
+emitting = false
+texture = ExtResource("1_wbtwu")
+one_shot = true
+explosiveness = 0.11
+randomness = 0.39
+visibility_rect = Rect2(-50, -50, 100, 100)
+process_material = SubResource("ParticleProcessMaterial_w5iag")
+
+[connection signal="finished" from="GPUParticles2D" to="." method="_on_gpu_particles_2d_finished"]

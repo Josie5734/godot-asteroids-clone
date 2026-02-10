@@ -39,6 +39,7 @@ func _physics_process(_delta: float) -> void:
 # for when the ship dies
 func ship_died():
 	ship.visible = false
+	destroyed_particles(ship.global_position)
 	game_over() # load game over sequence
 
 
@@ -77,6 +78,16 @@ func _on_asteroid_destroyed(size,pos):
 		asteroid_count -= 1 # remove 1 from asteroid count
 
 	add_score() # add score
+	
+	destroyed_particles(pos) # spawn particles
+
+
+# spawn destroyed particles at the given position
+func destroyed_particles(pos):
+	const PARTICLE = preload("res://scenes/particles/destroy.tscn") # load particle scene
+	var new_particle = PARTICLE.instantiate() # create new particle object
+	new_particle.global_position = pos # put at new position
+	add_child(new_particle) # add into scene (automatically removes itself when done)
 
 
 # input for pause menu
