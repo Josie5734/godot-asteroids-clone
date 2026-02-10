@@ -5,11 +5,7 @@ extends Node2D
 var asteroid_count = 0
 var asteroid_max = 5
 var asteroid_interval = 0.3
-const SIZES = { # dict of sizes for scaling asteroids
-	3: Vector2(1,1),
-	2: Vector2(0.6,0.6),
-	1: Vector2(0.3,0.3)
-}
+
 
 # ship
 @onready var ship = %Ship 
@@ -47,30 +43,18 @@ func ship_died():
 
 
 # spawn a new asteroid, pass in size to say which size, option pos for spawning splits from previous asteroid
-func spawn_asteroid(size, pos = Vector2()):
-	const ASTEROID  = preload("res://scenes/asteroid/asteroid.tscn")
-	
-	var new_asteroid = ASTEROID.instantiate()
-	$AsteroidSpawnPath/SpawnPathFollow.progress_ratio = randf() # random point on the spawn path
-	if size == 3: # if a big one
-		new_asteroid.global_position = $AsteroidSpawnPath/SpawnPathFollow.global_position  # set position to random point on spawn path
-		new_asteroid.speed = randi_range(20,40) # random speed
-		# movement direction is set as towards the ship at the time of spawning
-		new_asteroid.velocity =  Vector2(ship.global_position - new_asteroid.global_position).normalized() 
-
-	else: # else smaller ones
-		new_asteroid.global_position = pos # spawn at passed in position
-		new_asteroid.speed = randi_range((20*(size/5)),(40*(size/5))) # random speed (higher than normal
-		new_asteroid.velocity =  Vector2(randf(),randf()) # random direction 
-
-	new_asteroid.scale = SIZES[size] # set the size of the asteroid
-	new_asteroid.size = size # set the size variable in the script
-	call_deferred("add_child",new_asteroid)  # add asteroid as child of game scene
-	
+func spawn_asteroid(size, pos=Vector2.ZERO):
+	var spawn_pos # position to be spawned at
+	if pos != Vector2.ZERO: # if a position has been passed in
+		spawn_pos = pos # use inputted position
+	else: # else use spawnpath
+		$AsteroidSpawnPath/SpawnPathFollow.progress_ratio = randf() # random point on the spawn path
+		spawn_pos = $AsteroidSpawnPath/SpawnPathFollow.global_position # get spawn position from path
+		
+	var asteroid = Asteroid.create(spawn_pos,%Ship.global_position,size) # call create function
+	call_deferred("add_child",asteroid)  # add asteroid as child of game scene
+	asteroid.connect("destroyed",_on_asteroid_destroyed) # connect to the asteroid destroyed signal
 	asteroid_count += 1 # iterate counter
-	
-	
-	new_asteroid.connect("destroyed",_on_asteroid_destroyed) # connect to the asteroid destroyed signal
 
 
 # spawning asteroids from timer

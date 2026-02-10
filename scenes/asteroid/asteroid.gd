@@ -1,4 +1,5 @@
 extends ScreenWrap
+class_name Asteroid
 
 signal destroyed
 
@@ -13,6 +14,12 @@ var size = 3 # the size of the asteroid
 # 3 - big
 # 2 - medium
 # 1 - small
+
+const SIZES = { # dict of sizes for scaling asteroids
+	3: Vector2(1,1),
+	2: Vector2(0.6,0.6),
+	1: Vector2(0.3,0.3)
+}
 
 var rotate_speed = randf_range(-0.3,0.3) # how fast to rotate
 
@@ -55,6 +62,31 @@ func generate_points():
 		if r > furthest_point: screen_wrap_margin = r + (min_radius/2) # set furthest point from center as screenwrap margin
 
 	return polygon_points # send back the points array 
+
+
+# creates a new asteroid object. asteroid_pos is either a point on the spawnpath or a given vector coordinate
+static func create(asteroid_pos: Vector2, ship_pos: Vector2, size) -> Node2D:
+	const ASTEROID  = preload("res://scenes/asteroid/asteroid.tscn")
+	var new_asteroid = ASTEROID.instantiate()
+	new_asteroid.global_position = asteroid_pos  # set position to random point on spawn path or given coordinate
+
+
+	if size == 3: # if a big one
+		new_asteroid.speed = randi_range(20,40) # random speed
+		
+		# get direction to the ship
+		new_asteroid.velocity =  Vector2(ship_pos - new_asteroid.global_position).normalized()
+		var random_angle = randf_range(-PI/5,PI/5) # random range for offset
+		new_asteroid.velocity = new_asteroid.velocity.rotated(random_angle) # add the random angle as an offset to the direction
+		
+	else: # else smaller ones
+		new_asteroid.speed = randi_range((20*(size/5)),(40*(size/5))) # random speed (higher than normal)
+		new_asteroid.velocity =  Vector2(randf(),randf()) # random direction 
+
+	new_asteroid.scale = SIZES[size] # set the size of the asteroid
+	new_asteroid.size = size # set the size variable in the script
+	
+	return new_asteroid # send it back to the game script
 
 
 # destroy the asteroid
