@@ -20,6 +20,11 @@ const SIZES = { # dict of sizes for scaling asteroids
 	2: Vector2(0.6,0.6),
 	1: Vector2(0.3,0.3)
 }
+const SPEEDS = { # dict of speeds for each size
+	3: Vector2i(50,80), # done as a range for the randomiser
+	2: 2, # these 2 are multiples for the speed calculation
+	1: 3
+}
 
 var rotate_speed = randf_range(-0.3,0.3) # how fast to rotate
 
@@ -35,7 +40,7 @@ func _ready() -> void:
 	
 
 func _physics_process(delta: float) -> void:
-	asteroid.global_position += velocity # move
+	asteroid.global_position += velocity * speed * delta # move
 	asteroid.global_rotation += rotate_speed * delta # rotate
 	screen_wrap(get_viewport_rect(),screen_wrap_margin) # wrap around screen
 
@@ -72,15 +77,16 @@ static func create(asteroid_pos: Vector2, ship_pos: Vector2, size) -> Node2D:
 
 
 	if size == 3: # if a big one
-		new_asteroid.speed = randi_range(20,40) # random speed
+		new_asteroid.speed = randi_range(SPEEDS[size].x,SPEEDS[size].y) # random speed from range
 		
 		# get direction to the ship
 		new_asteroid.velocity =  Vector2(ship_pos - new_asteroid.global_position).normalized()
-		var random_angle = randf_range(-PI/5,PI/5) # random range for offset
+		var offset = PI/5 # offset from ship direction
+		var random_angle = randf_range(-offset,offset) # random range within offset
 		new_asteroid.velocity = new_asteroid.velocity.rotated(random_angle) # add the random angle as an offset to the direction
 		
 	else: # else smaller ones
-		new_asteroid.speed = randi_range((20*(size/5)),(40*(size/5))) # random speed (higher than normal)
+		new_asteroid.speed = (1 / (size + randf())) * 100 * SPEEDS[size] # random speed 
 		new_asteroid.velocity =  Vector2(randf(),randf()) # random direction 
 
 	new_asteroid.scale = SIZES[size] # set the size of the asteroid
@@ -94,4 +100,4 @@ func destroy():
 	queue_free() # remove object
 	destroyed.emit(size,asteroid.global_position) # emit signal with the size and pos of the asteroid
 	# right now just instantly deletes
-	# will be expanded with splitting and particles and sound and stuff
+	# will be expanded with particles and sound and stuff
