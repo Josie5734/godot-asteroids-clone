@@ -58,6 +58,11 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 50
 text = "Play"
 
+[node name="Scores" type="Button" parent="MenuVbox/ButtonsContainer/ButtonsVbox" unique_id=1873841532]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Scores"
+
 [node name="Options" type="Button" parent="MenuVbox/ButtonsContainer/ButtonsVbox" unique_id=1283748389]
 layout_mode = 2
 theme_override_font_sizes/font_size = 50
@@ -69,5 +74,6 @@ theme_override_font_sizes/font_size = 50
 text = "Exit"
 
 [connection signal="pressed" from="MenuVbox/ButtonsContainer/ButtonsVbox/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="MenuVbox/ButtonsContainer/ButtonsVbox/Scores" to="." method="_on_scores_pressed"]
 [connection signal="pressed" from="MenuVbox/ButtonsContainer/ButtonsVbox/Options" to="." method="_on_options_pressed"]
 [connection signal="pressed" from="MenuVbox/ButtonsContainer/ButtonsVbox/Exit" to="." method="_on_exit_pressed"]

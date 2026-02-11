@@ -1,0 +1,212 @@
+[gd_scene format=3 uid="uid://c1htt2diwcnhs"]
+
+[ext_resource type="Script" uid="uid://6sbu1iu1iohu" path="res://scenes/scores_menu/scores_menu.gd" id="1_2ria1"]
+[ext_resource type="PackedScene" uid="uid://3dq5vis2xs8a" path="res://scenes/background/background.tscn" id="2_2ria1"]
+
+[node name="ScoresMenu" type="Control" unique_id=1924056902]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_2ria1")
+
+[node name="Background" parent="." unique_id=1586709641 instance=ExtResource("2_2ria1")]
+
+[node name="ScoresVbox" type="VBoxContainer" parent="." unique_id=288563803]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="TitleContainer" type="CenterContainer" parent="ScoresVbox" unique_id=1936931556]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.3
+
+[node name="TitleVbox" type="VBoxContainer" parent="ScoresVbox/TitleContainer" unique_id=1973519314]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="ScoresVbox/TitleContainer/TitleVbox" unique_id=1590432131]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 75
+text = "High Scores"
+horizontal_alignment = 1
+
+[node name="ScoreListContainer" type="HBoxContainer" parent="ScoresVbox" unique_id=1131850347]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="LeftHalf" type="HBoxContainer" parent="ScoresVbox/ScoreListContainer" unique_id=928246447]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Spacer" type="Control" parent="ScoresVbox/ScoreListContainer/LeftHalf" unique_id=766810203]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+
+[node name="ScoreColumn" type="VBoxContainer" parent="ScoresVbox/ScoreListContainer/LeftHalf" unique_id=1200651046]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="Score1" type="Label" parent="ScoresVbox/ScoreListContainer/LeftHalf/ScoreColumn" unique_id=130404438]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Score: 000000000"
+horizontal_alignment = 1
+
+[node name="Score2" type="Label" parent="ScoresVbox/ScoreListContainer/LeftHalf/ScoreColumn" unique_id=1440838266]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Score: 000000000"
+horizontal_alignment = 1
+
+[node name="Score3" type="Label" parent="ScoresVbox/ScoreListContainer/LeftHalf/ScoreColumn" unique_id=1127097924]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Score: 000000000"
+horizontal_alignment = 1
+
+[node name="Score4" type="Label" parent="ScoresVbox/ScoreListContainer/LeftHalf/ScoreColumn" unique_id=904890032]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Score: 000000000"
+horizontal_alignment = 1
+
+[node name="Score5" type="Label" parent="ScoresVbox/ScoreListContainer/LeftHalf/ScoreColumn" unique_id=1992739004]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Score: 000000000"
+horizontal_alignment = 1
+
+[node name="Score6" type="Label" parent="ScoresVbox/ScoreListContainer/LeftHalf/ScoreColumn" unique_id=19189331]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Score: 000000000"
+horizontal_alignment = 1
+
+[node name="Score7" type="Label" parent="ScoresVbox/ScoreListContainer/LeftHalf/ScoreColumn" unique_id=896990314]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Score: 000000000"
+horizontal_alignment = 1
+
+[node name="Score8" type="Label" parent="ScoresVbox/ScoreListContainer/LeftHalf/ScoreColumn" unique_id=758572070]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Score: 000000000"
+horizontal_alignment = 1
+
+[node name="Score9" type="Label" parent="ScoresVbox/ScoreListContainer/LeftHalf/ScoreColumn" unique_id=909932768]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Score: 000000000"
+horizontal_alignment = 1
+
+[node name="Score10" type="Label" parent="ScoresVbox/ScoreListContainer/LeftHalf/ScoreColumn" unique_id=1125887848]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Score: 000000000"
+horizontal_alignment = 1
+
+[node name="RightHalf" type="HBoxContainer" parent="ScoresVbox/ScoreListContainer" unique_id=454409598]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="DateColumn" type="VBoxContainer" parent="ScoresVbox/ScoreListContainer/RightHalf" unique_id=924250829]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Date1" type="Label" parent="ScoresVbox/ScoreListContainer/RightHalf/DateColumn" unique_id=924547990]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Date: xx/xx/xxxx"
+horizontal_alignment = 1
+
+[node name="Date2" type="Label" parent="ScoresVbox/ScoreListContainer/RightHalf/DateColumn" unique_id=669045555]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Date: xx/xx/xxxx"
+horizontal_alignment = 1
+
+[node name="Date3" type="Label" parent="ScoresVbox/ScoreListContainer/RightHalf/DateColumn" unique_id=699624806]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Date: xx/xx/xxxx"
+horizontal_alignment = 1
+
+[node name="Date4" type="Label" parent="ScoresVbox/ScoreListContainer/RightHalf/DateColumn" unique_id=288919264]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Date: xx/xx/xxxx"
+horizontal_alignment = 1
+
+[node name="Date5" type="Label" parent="ScoresVbox/ScoreListContainer/RightHalf/DateColumn" unique_id=40012618]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Date: xx/xx/xxxx"
+horizontal_alignment = 1
+
+[node name="Date6" type="Label" parent="ScoresVbox/ScoreListContainer/RightHalf/DateColumn" unique_id=1629714807]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Date: xx/xx/xxxx"
+horizontal_alignment = 1
+
+[node name="Date7" type="Label" parent="ScoresVbox/ScoreListContainer/RightHalf/DateColumn" unique_id=197156749]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Date: xx/xx/xxxx"
+horizontal_alignment = 1
+
+[node name="Date8" type="Label" parent="ScoresVbox/ScoreListContainer/RightHalf/DateColumn" unique_id=906839160]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Date: xx/xx/xxxx"
+horizontal_alignment = 1
+
+[node name="Date9" type="Label" parent="ScoresVbox/ScoreListContainer/RightHalf/DateColumn" unique_id=514849720]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Date: xx/xx/xxxx"
+horizontal_alignment = 1
+
+[node name="Date10" type="Label" parent="ScoresVbox/ScoreListContainer/RightHalf/DateColumn" unique_id=1086278066]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Date: xx/xx/xxxx"
+horizontal_alignment = 1
+
+[node name="Spacer" type="Control" parent="ScoresVbox/ScoreListContainer/RightHalf" unique_id=211558669]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+
+[node name="ButtonsContainer" type="CenterContainer" parent="ScoresVbox" unique_id=480501420]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.1
+
+[node name="ButtonsVbox" type="VBoxContainer" parent="ScoresVbox/ButtonsContainer" unique_id=368531061]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Exit" type="Button" parent="ScoresVbox/ButtonsContainer/ButtonsVbox" unique_id=33987493]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Exit"
+
+[connection signal="pressed" from="ScoresVbox/ButtonsContainer/ButtonsVbox/Exit" to="." method="_on_exit_pressed"]
