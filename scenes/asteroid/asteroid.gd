@@ -46,10 +46,6 @@ func _physics_process(delta: float) -> void:
 
 
 # generate the asteroid shape
-#TODO: 
-# adjust spawning position to be slightly outside of the screen so they have some time to slide in
-# adjust angle so that they point towards where the ship is at the time of spawning
-#	rather than just in the same direction
 func generate_points():
 	var polygon_points = PackedVector2Array()
 	var point_count = 8 # number of points

@@ -58,6 +58,7 @@ func die():
 func _on_area_entered(area: Area2D) -> void:
 	if area.is_in_group("asteroids"): # if object is asteroid
 		die() # kill ship
+		area.destroy() # destroy the asteroid aswell
 		
 
 	
