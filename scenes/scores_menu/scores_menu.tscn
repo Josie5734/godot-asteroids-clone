@@ -194,19 +194,32 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 2.0
 
-[node name="ButtonsContainer" type="CenterContainer" parent="ScoresVbox" unique_id=480501420]
+[node name="ButtonsHbox" type="HBoxContainer" parent="ScoresVbox" unique_id=1026103313]
+layout_mode = 2
+
+[node name="Spacer" type="Control" parent="ScoresVbox/ButtonsHbox" unique_id=1651054338]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.25
+
+[node name="ExitCenter" type="CenterContainer" parent="ScoresVbox/ButtonsHbox" unique_id=480501420]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-size_flags_stretch_ratio = 0.1
 
-[node name="ButtonsVbox" type="VBoxContainer" parent="ScoresVbox/ButtonsContainer" unique_id=368531061]
-layout_mode = 2
-theme_override_constants/separation = 20
-
-[node name="Exit" type="Button" parent="ScoresVbox/ButtonsContainer/ButtonsVbox" unique_id=33987493]
+[node name="Exit" type="Button" parent="ScoresVbox/ButtonsHbox/ExitCenter" unique_id=33987493]
 layout_mode = 2
 theme_override_font_sizes/font_size = 50
 text = "Exit"
 
-[connection signal="pressed" from="ScoresVbox/ButtonsContainer/ButtonsVbox/Exit" to="." method="_on_exit_pressed"]
+[node name="DeleteCenter" type="CenterContainer" parent="ScoresVbox/ButtonsHbox" unique_id=313949256]
+layout_mode = 2
+size_flags_stretch_ratio = 0.3
+
+[node name="DeleteScores" type="Button" parent="ScoresVbox/ButtonsHbox/DeleteCenter" unique_id=152821974]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Delete scores"
+
+[connection signal="pressed" from="ScoresVbox/ButtonsHbox/ExitCenter/Exit" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="ScoresVbox/ButtonsHbox/DeleteCenter/DeleteScores" to="." method="_on_delete_scores_pressed"]

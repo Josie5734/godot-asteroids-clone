@@ -23,7 +23,7 @@ var score:int = 0 # player score
 var score_add = 30 # how many points to add when scoring
 var score_mult = 1 # score multiplier
 var mult_calc = 20 # get a time
-var score_bank = 0 # when lerping from scoreadded to score, store how many to add here
+var score_bank:int = 0 # when lerping from scoreadded to score, store how many to add here
 @onready var score_label = %ScoreLabel
 
 
@@ -38,8 +38,9 @@ func _physics_process(_delta: float) -> void:
 
 # for when the ship dies
 func ship_died():
-	ship.visible = false
-	destroyed_particles(ship.global_position)
+	ship.visible = false # make invisible
+	ship.get_node("ShipCollision").set_deferred("disabled", true) # disable collision
+	destroyed_particles(ship.global_position) # spawn particles
 	game_over() # load game over sequence
 
 
@@ -134,15 +135,14 @@ func game_restart():
 		game_over_instance.queue_free() # free it
 		game_over_instance = null # reset value
 		get_tree().paused = false # unpause
+	SaveManager.assess_save(score+score_bank) # send current score to be assessed/saved
 	get_tree().reload_current_scene()
 	
 
 # exit to main menu
 func go_to_main_menu():
-		get_tree().change_scene_to_file("res://scenes/main_menu/main_menu.tscn") # switch to main menu scene
-
-
-
+	SaveManager.assess_save(score+score_bank) # send current score to be assessed/saved
+	get_tree().change_scene_to_file("res://scenes/main_menu/main_menu.tscn") # switch to main menu scene
 
 
 # manage adding to score
@@ -156,7 +156,14 @@ func add_score():
 	score_bank = score_add * score_mult # add score to bank
 
 
-# lerp function to increase score - currently unused in favour of gradual func below
+# gradually increase the score by 1 until the banked score is depleted
+# to create a smooth increase of the score counter
+func gradual_score():
+	score += 1
+	score_bank -= 1
+	score_label.text = "Score: " + str(score) # update score label
+
+# lerp function to increase score - currently unused in favour of gradual func above
 # actually currently works in floats so ends up cutting numbers off and making them slightly smaller
 # not sure on whether or not i want to change this yet though it adds a bit of interest to the score numbers
 #func lerp_score():
@@ -165,10 +172,3 @@ func add_score():
 #	score += value # add it
 #	score_bank -= value # decrease from bank
 #	score_label.text = "Score: " + str(score) # update score label
-
-# gradually increase the score by 1 until the banked score is depleted
-# to create a smooth increase of the score counter
-func gradual_score():
-	score += 1
-	score_bank -= 1
-	score_label.text = "Score: " + str(score) # update score label
