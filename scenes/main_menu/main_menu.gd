@@ -9,12 +9,11 @@ func _ready() -> void:
 
 # load game
 func _on_play_pressed() -> void:
-	
 	get_tree().change_scene_to_file("res://scenes/game/game.tscn")
 
 
 func _on_options_pressed() -> void:
-	pass
+	get_tree().change_scene_to_file("res://scenes/options_menu/options_menu.tscn")
 
 
 
@@ -25,3 +24,8 @@ func _on_scores_pressed() -> void:
 # quit game
 func _on_exit_pressed() -> void:
 	get_tree().quit()
+
+
+# go to credits
+func _on_credits_pressed() -> void:
+	get_tree().change_scene_to_file("res://scenes/credits_menu/credits_menu.tscn")

@@ -27,6 +27,7 @@ alignment = 1
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+size_flags_stretch_ratio = 0.9
 
 [node name="TitleVbox" type="VBoxContainer" parent="MenuVbox/TitleContainer" unique_id=1840774762]
 layout_mode = 2
@@ -40,7 +41,12 @@ horizontal_alignment = 1
 
 [node name="SubTitle" type="Label" parent="MenuVbox/TitleContainer/TitleVbox" unique_id=1580312217]
 layout_mode = 2
-text = "By Josie"
+text = "A Clone Game By "
+horizontal_alignment = 1
+
+[node name="SubTitle2" type="Label" parent="MenuVbox/TitleContainer/TitleVbox" unique_id=1278984323]
+layout_mode = 2
+text = "Josie5734"
 horizontal_alignment = 1
 
 [node name="ButtonsContainer" type="CenterContainer" parent="MenuVbox" unique_id=16877731]
@@ -68,6 +74,12 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 50
 text = "Options"
 
+[node name="Credits" type="Button" parent="MenuVbox/ButtonsContainer/ButtonsVbox" unique_id=1943164077 groups=["ui_buttons"]]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Credits
+"
+
 [node name="Exit" type="Button" parent="MenuVbox/ButtonsContainer/ButtonsVbox" unique_id=732597808 groups=["ui_buttons"]]
 layout_mode = 2
 theme_override_font_sizes/font_size = 50
@@ -76,4 +88,6 @@ text = "Exit"
 [connection signal="pressed" from="MenuVbox/ButtonsContainer/ButtonsVbox/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="MenuVbox/ButtonsContainer/ButtonsVbox/Scores" to="." method="_on_scores_pressed"]
 [connection signal="pressed" from="MenuVbox/ButtonsContainer/ButtonsVbox/Options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="MenuVbox/ButtonsContainer/ButtonsVbox/Credits" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="MenuVbox/ButtonsContainer/ButtonsVbox/Credits" to="." method="_on_credits_pressed"]
 [connection signal="pressed" from="MenuVbox/ButtonsContainer/ButtonsVbox/Exit" to="." method="_on_exit_pressed"]

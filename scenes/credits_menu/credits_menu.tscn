@@ -1,0 +1,141 @@
+[gd_scene format=3 uid="uid://dxv66rtivl85y"]
+
+[ext_resource type="Script" uid="uid://bxve0ycq0y8bu" path="res://scenes/credits_menu/credits_menu.gd" id="1_344tv"]
+[ext_resource type="PackedScene" uid="uid://3dq5vis2xs8a" path="res://scenes/background/background.tscn" id="1_hhhe6"]
+
+[node name="CreditsMenu" type="Control" unique_id=1758844903]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_344tv")
+
+[node name="Background" parent="." unique_id=1586709641 instance=ExtResource("1_hhhe6")]
+
+[node name="CreditsContainer" type="VBoxContainer" parent="." unique_id=1243637735]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TitleContainer" type="CenterContainer" parent="CreditsContainer" unique_id=253658411]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="TitleVbox" type="VBoxContainer" parent="CreditsContainer/TitleContainer" unique_id=1766517620]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="CreditsContainer/TitleContainer/TitleVbox" unique_id=832970985]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 75
+text = "Asteroids"
+horizontal_alignment = 1
+
+[node name="SubTitle" type="Label" parent="CreditsContainer/TitleContainer/TitleVbox" unique_id=163644592]
+layout_mode = 2
+text = "A Clone Game By "
+horizontal_alignment = 1
+
+[node name="SubTitle2" type="Label" parent="CreditsContainer/TitleContainer/TitleVbox" unique_id=517210299]
+layout_mode = 2
+text = "Josie5734"
+horizontal_alignment = 1
+
+[node name="CreditsVbox" type="VBoxContainer" parent="CreditsContainer" unique_id=1294508543]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.5
+theme_override_constants/separation = 30
+
+[node name="Credit1VBox" type="VBoxContainer" parent="CreditsContainer/CreditsVbox" unique_id=1262884226]
+layout_mode = 2
+
+[node name="Credit" type="Label" parent="CreditsContainer/CreditsVbox/Credit1VBox" unique_id=1983516194]
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_font_sizes/font_size = 25
+text = "Programming, Visuals, Music, Sound FX"
+horizontal_alignment = 1
+
+[node name="SubCredit" type="Label" parent="CreditsContainer/CreditsVbox/Credit1VBox" unique_id=57719869]
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_font_sizes/font_size = 20
+text = "Josie5734"
+horizontal_alignment = 1
+
+[node name="Credit1VBox2" type="VBoxContainer" parent="CreditsContainer/CreditsVbox" unique_id=1435101036]
+layout_mode = 2
+
+[node name="Credit" type="Label" parent="CreditsContainer/CreditsVbox/Credit1VBox2" unique_id=79324772]
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_font_sizes/font_size = 25
+text = "Sound FX made with"
+horizontal_alignment = 1
+
+[node name="SubCredit" type="Label" parent="CreditsContainer/CreditsVbox/Credit1VBox2" unique_id=2073267345]
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_font_sizes/font_size = 20
+text = "sfxr.me"
+horizontal_alignment = 1
+
+[node name="Credit1VBox3" type="VBoxContainer" parent="CreditsContainer/CreditsVbox" unique_id=3049325]
+layout_mode = 2
+
+[node name="Credit" type="Label" parent="CreditsContainer/CreditsVbox/Credit1VBox3" unique_id=65483166]
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_font_sizes/font_size = 25
+text = "Music made with"
+horizontal_alignment = 1
+
+[node name="SubCredit" type="Label" parent="CreditsContainer/CreditsVbox/Credit1VBox3" unique_id=1071936454]
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_font_sizes/font_size = 20
+text = "Vital Synthesiser and Reaper DAW"
+horizontal_alignment = 1
+
+[node name="Credit1VBox4" type="VBoxContainer" parent="CreditsContainer/CreditsVbox" unique_id=1605320130]
+layout_mode = 2
+
+[node name="Credit" type="Label" parent="CreditsContainer/CreditsVbox/Credit1VBox4" unique_id=1822209090]
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_font_sizes/font_size = 25
+text = "Visual Elements made with"
+horizontal_alignment = 1
+
+[node name="SubCredit" type="Label" parent="CreditsContainer/CreditsVbox/Credit1VBox4" unique_id=2020418569]
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_font_sizes/font_size = 20
+text = "Inkscape"
+horizontal_alignment = 1
+
+[node name="Github" type="Label" parent="CreditsContainer/CreditsVbox" unique_id=477750054]
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_font_sizes/font_size = 25
+text = "github.com/josie5734"
+horizontal_alignment = 1
+
+[node name="ButtonCenterContainer" type="CenterContainer" parent="CreditsContainer" unique_id=1730260512]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.64
+
+[node name="Exit" type="Button" parent="CreditsContainer/ButtonCenterContainer" unique_id=1321924492 groups=["ui_buttons"]]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Exit"
+
+[connection signal="pressed" from="CreditsContainer/ButtonCenterContainer/Exit" to="." method="_on_exit_pressed"]

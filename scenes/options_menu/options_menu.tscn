@@ -1,0 +1,122 @@
+[gd_scene format=3 uid="uid://bwxkgbl8elbp"]
+
+[ext_resource type="Script" uid="uid://b1c8vcu8s5hq6" path="res://scenes/options_menu/options_menu.gd" id="1_jg136"]
+[ext_resource type="PackedScene" uid="uid://3dq5vis2xs8a" path="res://scenes/background/background.tscn" id="2_pk5f1"]
+
+[node name="SettingsMenu" type="Control" unique_id=1662102341]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_jg136")
+
+[node name="Background" parent="." unique_id=1586709641 instance=ExtResource("2_pk5f1")]
+
+[node name="SettingsVBox" type="VBoxContainer" parent="." unique_id=579773364]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TitleContainer" type="CenterContainer" parent="SettingsVBox" unique_id=871308413]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Title" type="Label" parent="SettingsVBox/TitleContainer" unique_id=1418542623]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Options"
+horizontal_alignment = 1
+
+[node name="SettingsVBox" type="VBoxContainer" parent="SettingsVBox" unique_id=328374859]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 6.0
+
+[node name="AudioMasterContainer" type="CenterContainer" parent="SettingsVBox/SettingsVBox" unique_id=1717344020]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="AudioMasterContainer" type="VBoxContainer" parent="SettingsVBox/SettingsVBox/AudioMasterContainer" unique_id=2046661628]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="AudioMasterLabel" type="Label" parent="SettingsVBox/SettingsVBox/AudioMasterContainer/AudioMasterContainer" unique_id=163273969]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Master Volume"
+horizontal_alignment = 1
+
+[node name="AudioMasterSlider" type="HSlider" parent="SettingsVBox/SettingsVBox/AudioMasterContainer/AudioMasterContainer" unique_id=1496116611]
+layout_mode = 2
+value = 100.0
+
+[node name="AudioMusicContainer" type="CenterContainer" parent="SettingsVBox/SettingsVBox" unique_id=617680331]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="AudioMusicContainer" type="VBoxContainer" parent="SettingsVBox/SettingsVBox/AudioMusicContainer" unique_id=626179898]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="AudioMusicLabel" type="Label" parent="SettingsVBox/SettingsVBox/AudioMusicContainer/AudioMusicContainer" unique_id=781875888]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Music Volume"
+horizontal_alignment = 1
+
+[node name="AudioMusicSlider" type="HSlider" parent="SettingsVBox/SettingsVBox/AudioMusicContainer/AudioMusicContainer" unique_id=1602418175]
+layout_mode = 2
+value = 100.0
+
+[node name="AudioGameFXContainer" type="CenterContainer" parent="SettingsVBox/SettingsVBox" unique_id=46558192]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="AudioGameFXContainer" type="VBoxContainer" parent="SettingsVBox/SettingsVBox/AudioGameFXContainer" unique_id=129026506]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="AudioGameFXLabel" type="Label" parent="SettingsVBox/SettingsVBox/AudioGameFXContainer/AudioGameFXContainer" unique_id=1269429846]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "GameFX Volume"
+horizontal_alignment = 1
+
+[node name="AudioGameFXSlider" type="HSlider" parent="SettingsVBox/SettingsVBox/AudioGameFXContainer/AudioGameFXContainer" unique_id=182870122]
+layout_mode = 2
+value = 100.0
+
+[node name="AudioUIFXContainer" type="CenterContainer" parent="SettingsVBox/SettingsVBox" unique_id=870383032]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="AudioUIFXContainer" type="VBoxContainer" parent="SettingsVBox/SettingsVBox/AudioUIFXContainer" unique_id=2117535086]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="AudioUIFXLabel" type="Label" parent="SettingsVBox/SettingsVBox/AudioUIFXContainer/AudioUIFXContainer" unique_id=1315695227]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "UI FX Volume"
+horizontal_alignment = 1
+
+[node name="AudioUIFXSlider" type="HSlider" parent="SettingsVBox/SettingsVBox/AudioUIFXContainer/AudioUIFXContainer" unique_id=723872059]
+layout_mode = 2
+value = 100.0
+
+[node name="ButtonCenterContainer" type="CenterContainer" parent="SettingsVBox" unique_id=1049535757]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.64
+
+[node name="Exit" type="Button" parent="SettingsVBox/ButtonCenterContainer" unique_id=955446861 groups=["ui_buttons"]]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Exit"
+
+[connection signal="pressed" from="SettingsVBox/ButtonCenterContainer/Exit" to="." method="_on_exit_pressed"]

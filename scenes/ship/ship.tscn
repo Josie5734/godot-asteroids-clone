@@ -20,6 +20,6 @@ polygon = PackedVector2Array(72, -32, -54, 0, 72, 32)
 [node name="ShootSFX" type="AudioStreamPlayer2D" parent="." unique_id=1470716076]
 unique_name_in_owner = true
 stream = ExtResource("2_u5c2e")
-volume_db = -10.992
+bus = &"Game-FX"
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
