@@ -6,9 +6,11 @@ var asteroid_count = 0
 var asteroid_max = 5
 var asteroid_interval = 0.3
 
-
 # ship
 @onready var ship = %Ship 
+
+# SFX
+const EXPLOSION = preload("res://sounds/explosion_sfx.tscn")
 
 # for managing pause menu
 var pause_menu_scene = preload("res://scenes/pause_menu/pause_menu.tscn")
@@ -81,6 +83,10 @@ func _on_asteroid_destroyed(size,pos):
 	add_score() # add score
 	
 	destroyed_particles(pos) # spawn particles
+	var sfx = EXPLOSION.instantiate() # create new sfx node
+	sfx.global_position = pos # put at asteroid position
+	add_child(sfx) # add to tree
+	# it autoplays itself and then destroys itself
 
 
 # spawn destroyed particles at the given position
@@ -102,7 +108,7 @@ func _input(event: InputEvent) -> void:
 func pause():
 	pause_instance = pause_menu_scene.instantiate() # load pause scene 
 	pause_instance.global_position = get_viewport_rect().size / 2 # put in center
-	$".".add_child(pause_instance) # add to tree
+	add_child(pause_instance) # add to tree
 	pause_instance.connect("unpause",unpause) # connect to the signal for unpausing
 	pause_instance.connect("exit_button",go_to_main_menu)
 	
@@ -120,7 +126,7 @@ func unpause():
 func game_over():
 	game_over_instance = game_over_menu_scene.instantiate() # load menu
 	game_over_instance.global_position = get_viewport_rect().size / 2 # center
-	$".".add_child(game_over_instance) # add to tree
+	add_child(game_over_instance) # add to tree
 	game_over_instance.connect("restart",game_restart)
 	game_over_instance.connect("exit",go_to_main_menu)
 	

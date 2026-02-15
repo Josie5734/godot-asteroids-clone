@@ -4,6 +4,9 @@ signal ship_died # when ship dies
 
 @onready var ship = $"." # ship object
 
+@onready var sfx_shoot = %ShootSFX # shooting sound fx
+const EXPLOSION = preload("res://sounds/explosion_sfx.tscn")
+
 var velocity := Vector2(0,0) # current velocity for moving
 var thrust := 5 # speed
 var max_speed := 30 # speed cap
@@ -47,11 +50,16 @@ func shoot():
 	new_bullet.global_position = ship.global_position
 	new_bullet.global_rotation = ship.global_rotation
 	get_tree().get_root().get_node("Game").add_child(new_bullet) # add bullet as child of game node
+	sfx_shoot.play() # play shooting sound effect
 
 
 # kill the ship 
 func die():
 	ship_died.emit() # send signal to game scene
+	var sfx = EXPLOSION.instantiate() # create new sfx node
+	sfx.global_position = ship.global_position # put at ship position
+	add_child(sfx) # add to tree
+	# it autoplays itself and then destroys itself
 	
 	
 # on collision

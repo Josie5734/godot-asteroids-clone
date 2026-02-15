@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://weqxg147d1yw"]
+
+[ext_resource type="AudioStream" uid="uid://cb1xmydcpvb76" path="res://sounds/explosion.wav" id="1_s1o25"]
+[ext_resource type="Script" uid="uid://3mvf3creq46u" path="res://sounds/explosion_sfx.gd" id="2_byb33"]
+
+[node name="ExplosionSFX" type="AudioStreamPlayer2D" unique_id=365637568]
+stream = ExtResource("1_s1o25")
+volume_db = -6.05
+script = ExtResource("2_byb33")

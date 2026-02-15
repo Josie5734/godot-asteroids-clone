@@ -15,9 +15,14 @@ run/main_scene="uid://d2o6sl5b8jukw"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
+[audio]
+
+buses/default_bus_layout="uid://bnprpcm55rrt4"
+
 [autoload]
 
 SaveManager="*uid://48sy467t0t20"
+AudioManager="*uid://ud1sbqi1lhvu"
 
 [display]
 
@@ -33,6 +38,7 @@ enabled=PackedStringArray("res://addons/Todo_Manager/plugin.cfg", "res://addons/
 asteroids="asteroid objects"
 bullets="bullet objects"
 ship="the ship"
+ui_buttons="buttons in the ui"
 
 [input]
 

@@ -1,7 +1,5 @@
 extends Node2D
 
-signal particles_finished
-
 
 func _ready() -> void:
 	$GPUParticles2D.emitting = true # start emitting

@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://d15np85n6uiks"]
 
 [ext_resource type="Script" uid="uid://74jfeg6h4qt3" path="res://scenes/ship/ship.gd" id="1_ccv4y"]
+[ext_resource type="AudioStream" uid="uid://dq1r3myuneg0a" path="res://sounds/shoot.wav" id="2_u5c2e"]
 
 [node name="ShipBody" type="Area2D" unique_id=370561297 groups=["ship"]]
 collision_layer = 4
@@ -15,5 +16,10 @@ uv = PackedVector2Array(159.99998, 32, 159.99998, -47.999996, 0, -8)
 [node name="ShipCollision" type="CollisionPolygon2D" parent="." unique_id=163262529]
 scale = Vector2(0.5, 0.5)
 polygon = PackedVector2Array(72, -32, -54, 0, 72, 32)
+
+[node name="ShootSFX" type="AudioStreamPlayer2D" parent="." unique_id=1470716076]
+unique_name_in_owner = true
+stream = ExtResource("2_u5c2e")
+volume_db = -10.992
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]

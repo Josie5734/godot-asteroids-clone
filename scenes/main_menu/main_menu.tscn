@@ -53,22 +53,22 @@ size_flags_stretch_ratio = 2.0
 layout_mode = 2
 theme_override_constants/separation = 20
 
-[node name="Play" type="Button" parent="MenuVbox/ButtonsContainer/ButtonsVbox" unique_id=1734579650]
+[node name="Play" type="Button" parent="MenuVbox/ButtonsContainer/ButtonsVbox" unique_id=1734579650 groups=["ui_buttons"]]
 layout_mode = 2
 theme_override_font_sizes/font_size = 50
 text = "Play"
 
-[node name="Scores" type="Button" parent="MenuVbox/ButtonsContainer/ButtonsVbox" unique_id=1873841532]
+[node name="Scores" type="Button" parent="MenuVbox/ButtonsContainer/ButtonsVbox" unique_id=1873841532 groups=["ui_buttons"]]
 layout_mode = 2
 theme_override_font_sizes/font_size = 50
 text = "Scores"
 
-[node name="Options" type="Button" parent="MenuVbox/ButtonsContainer/ButtonsVbox" unique_id=1283748389]
+[node name="Options" type="Button" parent="MenuVbox/ButtonsContainer/ButtonsVbox" unique_id=1283748389 groups=["ui_buttons"]]
 layout_mode = 2
 theme_override_font_sizes/font_size = 50
 text = "Options"
 
-[node name="Exit" type="Button" parent="MenuVbox/ButtonsContainer/ButtonsVbox" unique_id=732597808]
+[node name="Exit" type="Button" parent="MenuVbox/ButtonsContainer/ButtonsVbox" unique_id=732597808 groups=["ui_buttons"]]
 layout_mode = 2
 theme_override_font_sizes/font_size = 50
 text = "Exit"

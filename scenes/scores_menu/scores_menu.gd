@@ -6,6 +6,12 @@ var score_box_str = "Score: " # the start of the score string for every label
 # apply scores from save file on loading menu
 func _ready() -> void: # apply values from save when menu loaded
 	apply_values_to_labels()
+	
+	# add the click sound effect to each buttons pressed() signal
+	for button in get_tree().get_nodes_in_group("ui_buttons"):
+		button.pressed.connect(AudioManager.play_button_click)
+
+
 
 
 # exit back to main menu

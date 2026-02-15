@@ -207,7 +207,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Exit" type="Button" parent="ScoresVbox/ButtonsHbox/ExitCenter" unique_id=33987493]
+[node name="Exit" type="Button" parent="ScoresVbox/ButtonsHbox/ExitCenter" unique_id=33987493 groups=["ui_buttons"]]
 layout_mode = 2
 theme_override_font_sizes/font_size = 50
 text = "Exit"
@@ -216,7 +216,7 @@ text = "Exit"
 layout_mode = 2
 size_flags_stretch_ratio = 0.3
 
-[node name="DeleteScores" type="Button" parent="ScoresVbox/ButtonsHbox/DeleteCenter" unique_id=152821974]
+[node name="DeleteScores" type="Button" parent="ScoresVbox/ButtonsHbox/DeleteCenter" unique_id=152821974 groups=["ui_buttons"]]
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
 text = "Delete scores"

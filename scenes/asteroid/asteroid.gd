@@ -50,6 +50,7 @@ func generate_points():
 	var polygon_points = PackedVector2Array()
 	var point_count = 8 # number of points
 	var min_radius = 40
+	@warning_ignore("integer_division")
 	var angle = 360 / point_count # angle of each point in degrees
 	var start_angle = 0
 	
@@ -60,20 +61,21 @@ func generate_points():
 		var vertex = Vector2.from_angle(deg_to_rad(start_angle)) * r # coords for the vertex point
 		polygon_points.append(vertex) # add point to polygon array
 		start_angle += angle # iterate to next angle
+		@warning_ignore("integer_division")
 		if r > furthest_point: screen_wrap_margin = r + (min_radius/2) # set furthest point from center as screenwrap margin
 
 	return polygon_points # send back the points array 
 
 
 # creates a new asteroid object. asteroid_pos is either a point on the spawnpath or a given vector coordinate
-static func create(asteroid_pos: Vector2, ship_pos: Vector2, size) -> Node2D:
+static func create(asteroid_pos: Vector2, ship_pos: Vector2, size_in) -> Node2D:
 	const ASTEROID  = preload("res://scenes/asteroid/asteroid.tscn")
 	var new_asteroid = ASTEROID.instantiate()
 	new_asteroid.global_position = asteroid_pos  # set position to random point on spawn path or given coordinate
 
 
-	if size == 3: # if a big one
-		new_asteroid.speed = randi_range(SPEEDS[size].x,SPEEDS[size].y) # random speed from range
+	if size_in == 3: # if a big one
+		new_asteroid.speed = randi_range(SPEEDS[size_in].x,SPEEDS[size_in].y) # random speed from range
 		
 		# get direction to the ship
 		new_asteroid.velocity =  Vector2(ship_pos - new_asteroid.global_position).normalized()
@@ -82,11 +84,11 @@ static func create(asteroid_pos: Vector2, ship_pos: Vector2, size) -> Node2D:
 		new_asteroid.velocity = new_asteroid.velocity.rotated(random_angle) # add the random angle as an offset to the direction
 		
 	else: # else smaller ones
-		new_asteroid.speed = (1 / (size + randf())) * 100 * SPEEDS[size] # random speed 
+		new_asteroid.speed = (1 / (size_in + randf())) * 100 * SPEEDS[size_in] # random speed 
 		new_asteroid.velocity =  Vector2(randf(),randf()) # random direction 
 
-	new_asteroid.scale = SIZES[size] # set the size of the asteroid
-	new_asteroid.size = size # set the size variable in the script
+	new_asteroid.scale = SIZES[size_in] # set the size of the asteroid
+	new_asteroid.size = size_in # set the size variable in the script
 	
 	return new_asteroid # send it back to the game script
 
