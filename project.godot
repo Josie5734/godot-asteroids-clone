@@ -23,6 +23,7 @@ buses/default_bus_layout="uid://bnprpcm55rrt4"
 
 SaveManager="*uid://48sy467t0t20"
 AudioManager="*uid://ud1sbqi1lhvu"
+OptionsManager="*uid://dn60dj35mq2kn"
 
 [display]
 

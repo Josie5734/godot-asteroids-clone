@@ -1,6 +1,7 @@
 extends Control
 
 signal unpause
+signal options
 signal exit_button
 
 
@@ -16,7 +17,7 @@ func _on_resume_pressed() -> void:
 
 
 func _on_options_pressed() -> void:
-	get_tree().change_scene_to_file("res://scenes/options_menu/options_menu.tscn")
+	options.emit() # emit options signal
 
 
 func _on_exit_pressed() -> void:

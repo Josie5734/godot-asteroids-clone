@@ -16,6 +16,10 @@ const EXPLOSION = preload("res://sounds/explosion_sfx.tscn")
 var pause_menu_scene = preload("res://scenes/pause_menu/pause_menu.tscn")
 var pause_instance = null
 
+# manaing options menu
+var options_menu_scene = preload("res://scenes/options_menu/options_menu.tscn")
+var options_instance = null
+
 # for managing game over menu
 var game_over_menu_scene = preload("res://scenes/game_over_menu/game_over_menu.tscn")
 var game_over_instance = null
@@ -110,6 +114,7 @@ func pause():
 	pause_instance.global_position = get_viewport_rect().size / 2 # put in center
 	add_child(pause_instance) # add to tree
 	pause_instance.connect("unpause",unpause) # connect to the signal for unpausing
+	pause_instance.connect("options",options) # connect to signal for options menu
 	pause_instance.connect("exit_button",go_to_main_menu)
 	
 	get_tree().paused = true # pause the game
@@ -120,6 +125,22 @@ func unpause():
 		pause_instance.queue_free() # free it
 		pause_instance = null # reset
 		get_tree().paused = false # unpause game (should already be unpaused but just incase)
+
+
+# manage options menu
+func options():
+	if options_instance: # if options menu exists
+		options_instance.queue_free() # free it
+		options_instance = null # reset
+		pause_instance.visible = true # make pause menu visible again
+	else: # else no options menu
+		pause_instance.visible = false # make pause menu invisible
+		options_instance = options_menu_scene.instantiate() # create new options menu
+		options_instance.global_position = get_viewport_rect().size / 2 # put in center
+		options_instance.connect("game_exit",options) # close signal, should call this function
+			# and get the above section since its open now
+		add_child(options_instance) # add to scene
+
 
 
 # game over menu on being hit
