@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://ca5lf4shymy6s" path="res://scenes/game/game.gd" id="1_7h61r"]
 [ext_resource type="PackedScene" uid="uid://d15np85n6uiks" path="res://scenes/ship/ship.tscn" id="2_0sr1o"]
 [ext_resource type="PackedScene" uid="uid://3dq5vis2xs8a" path="res://scenes/background/background.tscn" id="2_kelw5"]
+[ext_resource type="PackedScene" uid="uid://ddrqw7vl1jw0p" path="res://scenes/life_icon/life_icon.tscn" id="4_kelw5"]
 
 [sub_resource type="Curve2D" id="Curve2D_7h61r"]
 _data = {
@@ -40,20 +41,62 @@ anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+metadata/_edit_use_anchors_ = true
 
-[node name="CenterContainer" type="CenterContainer" parent="UI" unique_id=1004074063]
-layout_mode = 0
-offset_left = 1.0
-offset_top = -1.0
-offset_right = 1281.0
-offset_bottom = 60.5
+[node name="UIContainer" type="HBoxContainer" parent="UI" unique_id=1837198918]
+layout_mode = 1
+offset_right = 1280.0
+offset_bottom = 50.0
 
-[node name="ScoreLabel" type="Label" parent="UI/CenterContainer" unique_id=663541369]
+[node name="Lives" type="HBoxContainer" parent="UI/UIContainer" unique_id=916885688]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.33
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/UIContainer/Lives" unique_id=1314093969]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.3
+
+[node name="LifeIcon1" parent="UI/UIContainer/Lives/HBoxContainer" unique_id=1337115107 instance=ExtResource("4_kelw5")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.1
+
+[node name="LifeIcon2" parent="UI/UIContainer/Lives/HBoxContainer" unique_id=1154558114 instance=ExtResource("4_kelw5")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.1
+
+[node name="LifeIcon3" parent="UI/UIContainer/Lives/HBoxContainer" unique_id=2044545132 instance=ExtResource("4_kelw5")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.1
+
+[node name="Spacer" type="Control" parent="UI/UIContainer/Lives" unique_id=152358286]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.7
+
+[node name="CenterContainer" type="CenterContainer" parent="UI/UIContainer" unique_id=1004074063]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.33
+
+[node name="ScoreLabel" type="Label" parent="UI/UIContainer/CenterContainer" unique_id=663541369]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 36
 text = "Score: 0"
 horizontal_alignment = 1
+
+[node name="spacer" type="Control" parent="UI/UIContainer" unique_id=1404827623]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.33
 
 [connection signal="timeout" from="AsteroidTimer" to="." method="_on_asteroid_timer_timeout"]

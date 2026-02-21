@@ -14,13 +14,15 @@ var drag := .08 # higher = less drag
 var turn_speed := 2 # turning speed
 var screen_wrap_offset :=  40 # how much the ship can go offscreen before being wrapped
 
-
 func _physics_process(delta: float) -> void:
+	# controls
 	handle_turning(delta)
 	handle_thrust(delta)
-	screen_wrap(get_viewport().get_visible_rect(),screen_wrap_offset) # wrap around screen edges
 	if Input.is_action_just_pressed("shoot"):
 		shoot()
+	# screenwrap
+	screen_wrap(get_viewport().get_visible_rect(),screen_wrap_offset) # wrap around screen edges
+
 
 
 # input for rotating 

@@ -9,6 +9,14 @@ var asteroid_interval = 0.3
 # ship
 @onready var ship = %Ship 
 
+# lives
+var lives = 3 # number of lives
+@onready var lives_ui = { # references to ui nodes for each life
+	"0" = %LifeIcon1, # used to blink and remove them on losing a life
+	"1" = %LifeIcon2,
+	"2" = %LifeIcon3
+}
+
 # SFX
 const EXPLOSION = preload("res://sounds/explosion_sfx.tscn")
 
@@ -42,12 +50,41 @@ func _physics_process(_delta: float) -> void:
 		gradual_score() 
 
 
+# fade an object by reducing its modulate.a property to 0
+func fade(object):
+	var tween = create_tween() # tween obj
+	tween.tween_property(object,"modulate:a",0.0,1.0) # tween down to 0
+
+
 # for when the ship dies
 func ship_died():
+	lives -= 1 # decrease lives
+	fade(lives_ui[str(lives)]) # fade the matching ui life icon
+	
 	ship.visible = false # make invisible
 	ship.get_node("ShipCollision").set_deferred("disabled", true) # disable collision
+	ship.set_physics_process(false) # disable physics process to disable inputs
 	destroyed_particles(ship.global_position) # spawn particles
-	game_over() # load game over sequence
+	
+	if lives <= 0: # if out of lives
+		game_over() # load game over sequence
+	else: # otherwise do respawn sequence
+		ship_respawn()
+
+
+# ship respawning
+func ship_respawn():
+	await get_tree().create_timer(2).timeout # wait 2 seconds
+	ship.velocity = Vector2(0,0) # reset velocity
+	ship.global_position = get_viewport_rect().get_center() # put in center
+	ship.visible = true # make visible again
+	ship.set_physics_process(true) # re-enable physic process for inputs
+	
+	blink(ship,20,0.1,"visible") # blink 
+	await get_tree().create_timer(2).timeout # 2 second timer for invincibility
+	ship.visible = true # set ship visible (might be already but just to be sure
+	ship.get_node("ShipCollision").set_deferred("disabled", false) # re-enable collision
+
 
 
 # spawn a new asteroid, pass in size to say which size, option pos for spawning splits from previous asteroid
@@ -64,6 +101,15 @@ func spawn_asteroid(size, pos=Vector2.ZERO):
 	asteroid.connect("destroyed",_on_asteroid_destroyed) # connect to the asteroid destroyed signal
 	asteroid_count += 1 # iterate counter
 
+
+# blink an object X times at Y frequency, type is either visible or modulate
+func blink(object, times, freq, type):
+	for i in range(times): # for x times 
+		await get_tree().create_timer(freq).timeout # wait Y seconds
+		if type == "visible": # flip visible property
+			object.visible = not object.visible # flip visibility
+		else: # else flip modulate.a property
+			object.modulate.a = 0.0 if object.modulate.a != 255.0 else 255.0
 
 # spawning asteroids from timer
 func _on_asteroid_timer_timeout() -> void:

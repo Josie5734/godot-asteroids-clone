@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://ddrqw7vl1jw0p"]
+
+[node name="LifeIcon" type="Control" unique_id=1337115107]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="ShipPolygon" type="Polygon2D" parent="." unique_id=1609600220]
+position = Vector2(21, 28)
+rotation = 1.5707964
+scale = Vector2(0.4, 0.4)
+polygon = PackedVector2Array(72.000015, 32, 72.000015, -32.000004, -56.00003, 0)
+uv = PackedVector2Array(159.99998, 32, 159.99998, -47.999996, 0, -8)
