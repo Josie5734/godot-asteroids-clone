@@ -14,6 +14,6 @@ Some small things like the turning speed or asteroid count limit may need to be 
 
 All of the programming, music and artwork in this project was made by me
 
-Sound Effects were generated with [jsfxr](sfxr.me)
+Sound Effects were generated with [jsfxr](https://sfxr.me)
 
-Music was made using [Vital Synthesizer](vital.audio) in [Reaper DAW](www.reaper.fm)
+Music was made using [Vital Synthesizer](https://vital.audio) in [Reaper DAW](https://www.reaper.fm)
